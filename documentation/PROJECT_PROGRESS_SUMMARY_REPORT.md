@@ -43,7 +43,9 @@ Bachelor of Technology (B.Tech) in Computer Science and Engineering
 Buildings account for approximately 40% of global primary energy consumption and over 30% of anthropogenic greenhouse gas emissions. In the paradigm of smart cities and microgrids, the simultaneous management of volatile renewable generation (solar photovoltaic and wind turbines), building HVAC demand, smart lighting, and Battery Energy Storage Systems (BESS) represents an acute multi-objective optimization problem. Conventional pure data-driven deep learning models—including Long Short-Term Memory (LSTM) networks and standard Transformers—frequently suffer from physical inconsistency, predicting thermodynamically impossible thermal transients, violating energy conservation laws, and exhibiting catastrophic drift over multi-step forecast horizons.
 
 This capstone research project designs, implements, validates, and deploys a **Physics-Informed Deep Learning Architecture for Dynamic Building Energy Optimization and Microgrid Load Forecasting**. The architecture embeds first-principles thermodynamic differential equations (a 1R-1C lumped capacitance thermal model) directly into the PyTorch computational graph via custom regularized loss functions:
-$$\mathcal{L}_{\text{total}} = \lambda_{\text{data}} \mathcal{L}_{\text{data}} + \lambda_{\text{phys}} \mathcal{L}_{\text{physics}} + \lambda_{\text{bound}} \mathcal{L}_{\text{boundary}}$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{total}=\lambda_{data}\mathcal{L}_{data}+\lambda_{phys}\mathcal{L}_{physics}+\lambda_{bound}\mathcal{L}_{boundary}" />
+</p>
 
 To capture coupled multi-frequency dependencies, we introduce a **Dual-Horizon Attention Transformer** that decouples rapid weather and cloud-cover ramps from low-frequency diurnal thermal envelope dynamics. Furthermore, an unsupervised **Isolation Forest coupled with physical continuity imputation** detects and self-corrects corrupted IoT sensor streams. Downstream, an **Occupant-Aware Model Predictive Control (MPC)** engine optimizes HVAC setpoints, daylight-harvesting lighting, and BESS dispatch.
 
