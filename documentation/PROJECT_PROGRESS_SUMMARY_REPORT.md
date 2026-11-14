@@ -32,8 +32,7 @@ Bachelor of Technology (B.Tech) in Computer Science and Engineering
 14. [Chapter 13: Software Verification, Unit Testing & Quality Assurance](#14-chapter-13-software-verification-unit-testing--quality-assurance)
 15. [Chapter 14: System Limitations, Operational Edge Cases & Failure Modes](#15-chapter-14-system-limitations-operational-edge-cases--failure-modes)
 16. [Chapter 15: Future Research Directions & Hardware-in-the-Loop Scope](#16-chapter-15-future-research-directions--hardware-in-the-loop-scope)
-17. [Chapter 16: Academic Viva Voce Examination Defense Guide (100 Q&As)](#17-chapter-16-academic-viva-voce-examination-defense-guide-100-qas)
-18. [Chapter 17: Complete Bibliographic References with Verified DOIs](#18-chapter-17-complete-bibliographic-references-with-verified-dois)
+17. [Chapter 18: Complete Bibliographic References with Verified DOIs](#18-chapter-17-complete-bibliographic-references-with-verified-dois)
 
 ---
 
