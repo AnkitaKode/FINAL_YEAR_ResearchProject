@@ -40,13 +40,39 @@ $$C_z \frac{dT_{\text{in}}(t)}{dt} = \frac{T_{\text{out}}(t) - T_{\text{in}}(t)}
 Where $C_z = 40.0\,\text{kWh}/^\circ\text{C}$ is thermal capacitance and $R_{\text{env}} = 2.5\,^\circ\text{C}/\text{kW}$ is envelope resistance.
 
 ### B. PINN Composite Loss Objective
-To ensure numerical stability on discrete telemetry streams, the physical residual is evaluated via finite-difference discretization:
-$$R_{\text{therm}}(t_k) = \frac{\hat{T}_{\text{in}}(t_{k+1}) - \hat{T}_{\text{in}}(t_k)}{\Delta t} - \frac{1}{C_z} \left[ \frac{\bar{T}_{\text{out}} - \bar{T}_{\text{in}}}{R_{\text{env}}} + \bar{Q}_{\text{HVAC}} + \bar{Q}_{\text{int}} + \bar{Q}_{\text{sol}} \right]$$
 
-The training loss minimized via backpropagation is:
-$$\mathcal{L}(\theta) = \lambda_{\text{data}} \text{MSE}(\hat{Y}, Y) + \lambda_{\text{phys}} \text{MSE}(R_{\text{therm}}, 0) + \lambda_{\text{bound}} \mathcal{L}_{\text{bound}}$$
-With calibrated loss weights $\lambda_{\text{data}} = 1.0$, $\lambda_{\text{phys}} = 0.25$, $\lambda_{\text{bound}} = 0.10$.
+To ensure numerical stability when working with discrete telemetry data, the physical residual is evaluated using a finite-difference approximation:
 
+$$
+R_{\text{therm}}(t_k) =
+\frac{\hat{T}_{\text{in}}(t_{k+1})-\hat{T}_{\text{in}}(t_k)}{\Delta t}
+-\frac{1}{C_z}
+\left[
+\frac{\bar{T}_{\text{out}}-\bar{T}_{\text{in}}}{R_{\text{env}}}
++\bar{Q}_{\text{HVAC}}
++\bar{Q}_{\text{int}}
++\bar{Q}_{\text{sol}}
+\right]
+$$
+
+The composite training loss, minimized through backpropagation, is defined as:
+
+$$
+\mathcal{L}(\theta) =
+\lambda_{\text{data}}\,\text{MSE}(\hat{Y},Y)
++\lambda_{\text{phys}}\,\text{MSE}(R_{\text{therm}},0)
++\lambda_{\text{bound}}\,\mathcal{L}_{\text{bound}}
+$$
+
+The initial loss weights are set to:
+
+$$
+\lambda_{\text{data}}=1.0,\qquad
+\lambda_{\text{phys}}=0.25,\qquad
+\lambda_{\text{bound}}=0.10
+$$
+
+These weights balance prediction accuracy, physical consistency, and boundary-condition constraints during model training.
 ---
 
 ## IV. PROPOSED ARCHITECTURE
